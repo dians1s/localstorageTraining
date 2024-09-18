@@ -20,6 +20,7 @@ body {
         height: 100%;
         grid-template-columns: repeat(auto-fit, 400px);
         gap: 30px;
+        justify-content: center;
     }
 
     &__item {
@@ -57,6 +58,27 @@ body {
                 word-break: break-all;
                 word-wrap: break-word;
             }
+        }
+    }
+}
+
+@media (max-width: 460px) {
+    .wrapper {
+        padding: 3vh 5vw;
+        width: 100%;
+
+        &__list {
+            grid-template-columns: repeat(auto-fit, 80vw);
+        }
+
+        &__item {
+            width: 100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            row-gap: 30px;
+            font-size: 18px;
+            margin-right: 0;
         }
     }
 }

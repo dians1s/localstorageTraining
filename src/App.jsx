@@ -45,12 +45,17 @@ const App = () => {
     setModalNewPatient(true);
   }
 
+  const getMaxId = () => {
+    const ids = therapistDatabase.map(patient => patient.id);
+    return Math.max(...ids);
+  }
+
   const addNewPatient = (e) => {
     e.preventDefault();
     if (!newPatient.name) return alert('Введите имя нового пациента');
     if (!newPatient.surname) return alert('Введите фамилию нового пациента');
     if (newPatient.status === 1 && !newPatient.dateStart) return alert('Введите дату начала больничного нового пациента');
-    const newAddedPatients = [...therapistDatabase, {id: therapistDatabase.length, ...newPatient}];
+    const newAddedPatients = [...therapistDatabase, {id: (getMaxId() + 1), ...newPatient}];
     setTherapistDatabase(newAddedPatients);
     localStorage.setItem('therapistDatabase', JSON.stringify(newAddedPatients));
     setNewPatient({name: '', surname: '', status: 0, dateStart: '', icon: ''});
@@ -71,6 +76,15 @@ const App = () => {
                                                 icon: editPatient.icon};
       else return patient;
     });
+    setTherapistDatabase(newPatients);
+    localStorage.setItem('therapistDatabase', JSON.stringify(newPatients));
+    setEditPatient({id: -1, name: '', surname: '', status: 0, dateStart: '', icon: ''});
+    setModalEditPatient(false);
+  }
+
+  const deleteActivePatient = (e) => {
+    e.preventDefault();
+    const newPatients = therapistDatabase.filter(patient => patient.id !== editPatient.id);
     setTherapistDatabase(newPatients);
     localStorage.setItem('therapistDatabase', JSON.stringify(newPatients));
     setEditPatient({id: -1, name: '', surname: '', status: 0, dateStart: '', icon: ''});
@@ -105,6 +119,7 @@ const App = () => {
         : ''}
         <MyInput placeholder='URL фотографии (Не обязательно)' value={editPatient.icon} onChange={(e) => setEditPatient({...editPatient, icon: e.target.value})} />
         <MyButton onClick={(e) => editActivePatient(e)}>Добавить пациента в базу</MyButton>
+        <MyButton onClick={(e) => deleteActivePatient(e)} style={{backgroundColor: '#ff4040', borderColor: '#ff4040'}}>Удалить пациента</MyButton>
       </MyModal>
     </div>
   );
