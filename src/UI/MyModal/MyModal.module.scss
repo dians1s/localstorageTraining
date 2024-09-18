@@ -1,0 +1,48 @@
+.modal {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 0.5s;
+    pointer-events: none;
+    opacity: 0;
+
+    &.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
+.modalContent {
+    padding: 30px;
+    border-radius: 12px;
+    background-color: rgb(87, 104, 158);
+    width: 350px;
+    transform: scale(0.5);
+    transition: 0.4s all;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+
+    &.active {
+        transform: scale(1);
+    }
+
+    & form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        & input, & textarea {
+            margin-bottom: 10px;
+        }
+    }
+}

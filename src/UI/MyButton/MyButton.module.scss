@@ -1,0 +1,23 @@
+.btn {
+    width: 250px;
+    font-size: 20px;
+    color: white;
+    padding: 8px 18px;
+    border: 2px solid #0e94ec;
+    border-radius: 24px;
+    background-color: #0e94ec;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        background-color: #0b72b6;
+        border-color: #0b72b6;
+        scale: 1.15;
+    }
+}
+
+@media (max-width: 1111px) {
+    .btn {
+        font-size: 20px;
+    }
+}
